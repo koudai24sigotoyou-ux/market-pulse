@@ -1,0 +1,12 @@
+{
+  "name": "market-pulse",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A local stock lookup dashboard using real market data providers.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
