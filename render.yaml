@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: market-pulse
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: ALPHA_VANTAGE_API_KEY
+        sync: false
