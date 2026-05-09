@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>マーケットパルス</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">リアル株価データ</p>
+          <h1>マーケットパルス</h1>
+        </div>
+        <form id="searchForm" class="search">
+          <label for="searchInput">銘柄検索</label>
+          <div class="search-row">
+            <input id="searchInput" type="search" autocomplete="off" placeholder="AAPL、MSFT、7203.T など">
+            <button type="submit">検索</button>
+          </div>
+        </form>
+      </header>
+
+      <section id="marketStrip" class="market-strip" aria-label="主要指数">
+        <article class="loading-card">
+          <span>主要指数を読み込み中</span>
+          <strong>--</strong>
+          <em>--</em>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <aside class="watchlist" aria-label="検索結果">
+          <div class="section-title">
+            <h2>検索結果</h2>
+            <span id="resultCount">0</span>
+          </div>
+          <div id="stockList" class="stock-list"></div>
+        </aside>
+
+        <section class="detail-panel" aria-label="選択中の銘柄">
+          <div id="statusBanner" class="status-banner">準備完了</div>
+
+          <div class="stock-heading">
+            <div>
+              <p id="selectedTicker" class="ticker">--</p>
+              <h2 id="selectedName">銘柄を検索してください</h2>
+              <span id="selectedMeta" class="meta-line">銘柄は未選択です</span>
+            </div>
+            <div class="price-block">
+              <strong id="selectedPrice">--</strong>
+              <span id="selectedChange">--</span>
+            </div>
+          </div>
+
+          <div class="range-tabs" role="tablist" aria-label="チャート期間">
+            <button class="active" data-range="1D" type="button">1日</button>
+            <button data-range="1W" type="button">1週</button>
+            <button data-range="1M" type="button">1か月</button>
+            <button data-range="3M" type="button">3か月</button>
+            <button data-range="1Y" type="button">1年</button>
+          </div>
+
+          <div class="chart-wrap">
+            <canvas id="priceChart" width="920" height="380" aria-label="株価チャート"></canvas>
+          </div>
+
+          <div class="stats-grid">
+            <article>
+              <span>始値</span>
+              <strong id="statOpen">--</strong>
+            </article>
+            <article>
+              <span>高値</span>
+              <strong id="statHigh">--</strong>
+            </article>
+            <article>
+              <span>安値</span>
+              <strong id="statLow">--</strong>
+            </article>
+            <article>
+              <span>出来高</span>
+              <strong id="statVolume">--</strong>
+            </article>
+          </div>
+        </section>
+
+        <aside class="side-panel" aria-label="設定と保存銘柄">
+          <section class="source-panel">
+            <div class="section-title">
+              <h2>データ元</h2>
+              <span id="sourceState">自動</span>
+            </div>
+            <label class="api-field">
+              <span>Alpha Vantage APIキー</span>
+              <input id="apiKeyInput" type="password" autocomplete="off" placeholder="任意">
+            </label>
+            <div class="source-actions">
+              <button id="saveKeyButton" type="button">保存</button>
+              <button id="clearKeyButton" type="button">消去</button>
+            </div>
+            <p id="sourceNote" class="source-note">公式APIキーがある場合はAlpha Vantage、未設定時はYahoo Financeの公開エンドポイントを試します。</p>
+          </section>
+
+          <section class="saved-panel">
+            <div class="section-title">
+              <h2>保存済み</h2>
+              <span id="savedCount">0</span>
+            </div>
+            <div id="savedList" class="saved-list"></div>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
